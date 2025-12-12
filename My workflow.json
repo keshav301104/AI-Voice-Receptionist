@@ -1,0 +1,121 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "HEAD",
+        "path": "submit-lead",
+        "options": {}
+      },
+      "name": "Form Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        448,
+        -32
+      ],
+      "id": "cd920fa8-ec30-47b7-890e-6d4a8732fe88",
+      "webhookId": "2b616f87-c337-46ca-ac91-1d4ee0ac8be9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_RETELL_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from_number\": \"+17577039448\",\n  \"to_number\": \"+919877162427\"\n}",
+        "options": {}
+      },
+      "name": "Trigger Call",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        896,
+        -32
+      ],
+      "id": "6606f946-3b2c-4535-8811-ed2e49c8e42d"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "leads",
+        "fields": "name, phone, status",
+        "options": {}
+      },
+      "name": "Save to MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        672,
+        -32
+      ],
+      "id": "5c013aa4-db4f-449d-b71b-c79d2e243c9b",
+      "credentials": {
+        "mongoDb": {
+          "id": "GXLwPmn3BtKdlNKd",
+          "name": "MongoDB account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Form Trigger": [
+      {
+        "json": {
+          "name": "First item",
+          "code": 1
+        }
+      },
+      {
+        "json": {
+          "name": "Second item",
+          "code": 2
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Save to MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to MongoDB": {
+      "main": [
+        [
+          {
+            "node": "Trigger Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "350e0e20-6b9e-4263-956e-4b48113f14ca",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc66e37b1e5ae7fa879d29cd8732a775e7cd8f09d90c37ad024e9fb07eda90c2"
+  },
+  "id": "Vq4BhvdTIZ0lkVHH",
+  "tags": []
+}

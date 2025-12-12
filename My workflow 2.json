@@ -1,0 +1,141 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retell-events",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1d585d44-18e5-4104-836e-73b5d42ea556",
+      "name": "Webhook",
+      "webhookId": "cdc904bd-e72c-4fde-9e09-4a562eb2dafb"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event}}",
+                    "rightValue": "call_ended",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "c443181e-31a7-41aa-8eab-db291c9129b1"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "498170a1-5e9d-440e-a8ce-a6797bbcadae",
+                    "leftValue": "",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "c4344fd6-5c50-41a9-8210-e3eb5b17ac26",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "Call Summary: {{ $json.body.call_analysis.call_summary }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        416,
+        -96
+      ],
+      "id": "a7f0da58-2e75-4668-a007-99196ab3eebe",
+      "name": "Discord",
+      "webhookId": "eed727a8-a74d-45a3-875f-5a2c1f3942d0",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "RATB1EjJZTXlhDZ1",
+          "name": "Discord Webhook account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Discord",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d9edd493-b875-42f2-b42e-766b6d4d4d3d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fc66e37b1e5ae7fa879d29cd8732a775e7cd8f09d90c37ad024e9fb07eda90c2"
+  },
+  "id": "5EQ4JTel9PBYzfYW",
+  "tags": []
+}
