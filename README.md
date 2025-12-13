@@ -18,7 +18,7 @@ This is the backend listener workflow. It waits for Retell AI to finish a call, 
 ### 2. The Result (Discord Log)
 Immediately after the patient hangs up, the clinic staff receives a structured summary of the conversation in their private Discord channel.
 
-![n8n Workflow Screenshot](Screenshot%202025-12-13%20034809.png)
+![n8n Workflow Screenshot](discord_workflow.png)
 
 ---
 
