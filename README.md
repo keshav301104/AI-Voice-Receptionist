@@ -13,7 +13,7 @@ This project demonstrates a complete voice automation loop. A user triggers a ca
 ### 1. The "Brain" (n8n Automation)
 This is the backend listener workflow. It waits for Retell AI to finish a call, receives the transcript analysis via webhook, filters the event, and formats the data for delivery.
 
-![Discord Summary Screenshot](Screenshot%202025-12-13%20034821.png)
+![Discord Summary Screenshot](The_n8n_Workflow.png)
 
 ### 2. The Result (Discord Log)
 Immediately after the patient hangs up, the clinic staff receives a structured summary of the conversation in their private Discord channel.
