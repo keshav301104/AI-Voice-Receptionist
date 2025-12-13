@@ -1,0 +1,17 @@
+{
+  "agent_name": "Dental Receptionist",
+  "voice_id": "11labs-Adrian",
+  "llm_model": "gpt-4o",
+  "agent_type": "single_prompt_agent",
+  "system_prompt": "PASTE_YOUR_SYSTEM_PROMPT_HERE",
+  "functions": [
+    {
+      "name": "check_calendar",
+      "description": "Checks available slots for appointments"
+    },
+    {
+      "name": "book_appointment",
+      "description": "Books a slot for the patient"
+    }
+  ]
+}
