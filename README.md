@@ -22,6 +22,8 @@ Immediately after the patient hangs up, the clinic staff receives a structured s
 
 ### 2. Retell AI Agent
 
+![Retel AI Agent](retell_ai_agent_config.png)
+
 
 
 ---
